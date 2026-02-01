@@ -11,3 +11,6 @@
 - App.jsx sudah tidak digunakan 
 - Langsung di main.jsx untuk merender halmana
 - Pakai library LINK to untuk pindah halaman tanpa reload
+
+**React Conditional Rendering**
+- Component dibuat terpisah dan dijadikan satu ke dalam AuthLayouts.jsx
