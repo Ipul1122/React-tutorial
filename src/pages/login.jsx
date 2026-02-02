@@ -6,7 +6,6 @@ const LoginPage = () => {
         // Menggunakan AuthLayouts dengan title Login
         <AuthLayouts title="Login" type="login">
             <FormLogin></FormLogin>
-            
         </AuthLayouts>
     );
 }
