@@ -20,3 +20,7 @@
 - Dalam component dipecah beberapa props seperti dibuat component baru yaitu header, body dan footer
 - tiap component yang dipecah memiliki fungsi tersendiri
 - component CardProduct dapat direusable
+
+**Rendering List**
+- Menyederhanakan value component parent dibuat array
+- Menggunakan method .map untuk rendering data di dalam array 

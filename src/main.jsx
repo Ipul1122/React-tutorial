@@ -11,7 +11,12 @@ import ProductsPage from './pages/products.jsx';
 const router = createBrowserRouter([
   {
     path: "/", 
-    element: <div>Testing</div>,
+    element: <div>
+      <a href="/products">
+      Go to Products Page
+      </a>
+      
+      </div>,
     errorElement: <NotFound />
   },
   {
