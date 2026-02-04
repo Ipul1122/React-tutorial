@@ -23,4 +23,10 @@
 
 **Rendering List**
 - Menyederhanakan value component parent dibuat array
-- Menggunakan method .map untuk rendering data di dalam array 
+- Menggunakan method .map untuk rendering data di dalam array
+
+**Event Handler**
+- Suatu fitur yang dapat diinteraksi seperti button 
+- Button dari formLogin dapat diinteraksi
+- menggunakan preventDefault untuk input ke localstorage
+- menggunakan removeItem untuk logout 
