@@ -1,4 +1,6 @@
+import { Fragment } from 'react';
 import CardProduct from '../components/Fragments/CardProduct';
+import Button from '../components/Elements/Button';
 
 // definisikan komponen menjadi rendering lists
 const DataProducts = [
@@ -31,13 +33,25 @@ const DataProducts = [
   },
 ];
 
+const email = localStorage.getItem('email');
+
 const ProductsPage = () => {
+
+  const handleLogout = () => {
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    window.location.href = "/login";
+  }
+
     return (
-      <div className="flex justify-center py-5">
-
-
+      <Fragment>
+        <div className="flex justify-end h-10 bg-blue-500 text-white items-center px-5">
+          {email}
+          <Button classname="ml-5 bg-red-500" onClick={handleLogout}>Logout</Button>  
+        </div>
+        <div className="flex justify-center py-5">
         {DataProducts.map((product) => (
-          <CardProduct >
+          <CardProduct key={product.id}> // memberikan key pada setiap item
             <CardProduct.Header image={product.image} alt={product.alt} />
               <CardProduct.Body title={product.title}>
                 {product.description}
@@ -46,6 +60,7 @@ const ProductsPage = () => {
         </CardProduct>
         ))}
       </div>  
+      </Fragment>
     );
 }
 
