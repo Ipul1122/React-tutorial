@@ -32,5 +32,10 @@
 - menggunakan removeItem untuk logout 
 
 **State**
+- State adalah data dinamis di dalam komponen yang memicu re-render saat berubah
 - Sebuah memori yang dimiliki componenet 
 - Datanya bisa berubah-ubah 
+
+**UseState**
+- menambahkan state (data dinamis) ke dalam functional component.
+- useState adalah Hook (fungsi khusus) yang digunakan dalam functional component untuk membuat, menyimpan, dan memperbarui state tersebut.
