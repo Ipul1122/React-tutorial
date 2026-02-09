@@ -30,3 +30,7 @@
 - Button dari formLogin dapat diinteraksi
 - menggunakan preventDefault untuk input ke localstorage
 - menggunakan removeItem untuk logout 
+
+**State**
+- Sebuah memori yang dimiliki componenet 
+- Datanya bisa berubah-ubah 
