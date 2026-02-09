@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import CardProduct from '../components/Fragments/CardProduct';
 import Button from '../components/Elements/Button';
+import Counter from '../components/Fragments/Counter';
 
 // definisikan komponen menjadi rendering lists
 const DataProducts = [
@@ -60,6 +61,9 @@ const ProductsPage = () => {
         </CardProduct>
         ))}
       </div>  
+      <div className='flex justify-center w-100'>
+        <Counter></Counter>
+      </div>
       </Fragment>
     );
 }
