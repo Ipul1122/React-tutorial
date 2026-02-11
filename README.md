@@ -39,3 +39,14 @@
 **UseState**
 - menambahkan state (data dinamis) ke dalam functional component.
 - useState adalah Hook (fungsi khusus) yang digunakan dalam functional component untuk membuat, menyimpan, dan memperbarui state tersebut.
+
+**LifeCycle**
+- Disebut juga sebagai siklus hidup, sama halnya manusia.
+- setiap component di dalam React memiliki 3 tahap yaitu mounting, update, unmounting
+- Mounting => Dimana fase diciptakan atau mulai seperti inisialisasi
+- Updating => proses dimana hasilnya berkembang, perubahan
+- Unmouting => Ketika component dihancurkan atau tidak ditampilkan di sisi client-side
+- Ada 2 tipe dalam lifecycle yaitu Render Phase dan Commit Phase
+- Render Phase => Pure tidak bisa diubah-ubah
+- Commit Phase => Bisa dapat melakukan update, scheduling, dom Dll.
+- projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
