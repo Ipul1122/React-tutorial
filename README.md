@@ -50,3 +50,7 @@
 - Render Phase => Pure tidak bisa diubah-ubah
 - Commit Phase => Bisa dapat melakukan update, scheduling, dom Dll.
 - projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+*UseEffect**
+- Dapat memanipulasi component, untuk melakukan sync component
+- Menggunakan metode yang ada di lifecycle
