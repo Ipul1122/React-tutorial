@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import CardProduct from '../components/Fragments/CardProduct';
 import Button from '../components/elements/Button';
+import Counter from '../components/Fragments/Counter';
 
 // definisikan komponen menjadi rendering lists
 const DataProducts = [
@@ -117,7 +118,11 @@ const ProductsPage = () => {
             </table>
         </div>
       </div>  
-      
+        {/* test lifecycle */}
+        <div className="mt-5 flex justify-center">
+          {/* <Counter /> */}
+          <Counter></Counter>
+        </div>
       </Fragment>
     );
 }
