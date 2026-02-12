@@ -2,38 +2,39 @@ import { Fragment, useEffect, useState, useRef } from 'react';
 import CardProduct from '../components/Fragments/CardProduct';
 import Button from '../components/elements/Button';
 import Counter from '../components/Fragments/Counter';
-import { createRoutesFromElements } from 'react-router-dom';
+import { createRoutesFromElements, data } from 'react-router-dom';
+import {getProducts} from '../services/product.service';
 
 // definisikan komponen menjadi rendering lists
-const DataProducts = [
-  {
-    id: 1, 
-    title: "Kaos Oblong",
-    price: 150000,
-    image: "images/product-tshirt.jpg",
-    alt: "T-Shirt Product",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Repellat nobis fuga corporis illum officia 
-                  error illo porro quidem libero asperiores.`,
-  },
-  {
-    id: 2, 
-    title: "Kaos Bola",
-    price: 100000,
-    image: "images/product-tshirt.jpg",
-    alt: "T-Shirt Product",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.  
-                  error illo porro quidem libero asperiores`,
-  },
-  {
-    id: 3, 
-    title: "Kaos Oblong",
-    price: 200000,
-    image: "images/product-tshirt.jpg",
-    alt: "T-Shirt Product",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
-  },
-];
+// const DataProducts = [
+//   {
+//     id: 1, 
+//     title: "Kaos Oblong",
+//     price: 150000,
+//     image: "images/product-tshirt.jpg",
+//     alt: "T-Shirt Product",
+//     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+//                   Repellat nobis fuga corporis illum officia 
+//                   error illo porro quidem libero asperiores.`,
+//   },
+//   {
+//     id: 2, 
+//     title: "Kaos Bola",
+//     price: 100000,
+//     image: "images/product-tshirt.jpg",
+//     alt: "T-Shirt Product",
+//     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.  
+//                   error illo porro quidem libero asperiores`,
+//   },
+//   {
+//     id: 3, 
+//     title: "Kaos Oblong",
+//     price: 200000,
+//     image: "images/product-tshirt.jpg",
+//     alt: "T-Shirt Product",
+//     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
+//   },
+// ];
 
 const email = localStorage.getItem('email');
 
@@ -42,21 +43,30 @@ const ProductsPage = () => {
   // lifecycle method componentDidMount
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem('cart')) || []);
   }, [])
 
+  // Get API
+  useEffect(() => {
+    getProducts((data) => {
+      setProducts(data);
+    })
+  }, [])
+
   // lifecycle method componentDidUpdate
   useEffect(() => {
-    if (cart.length > 0) {
+    if (products.length > 0 && cart.length > 0) {
       const sum = cart.reduce((acc, item) => {
-        const product = DataProducts.find((product) => product.id === item.id);
+        const product = products.find((product) => product.id === item.id);
         return acc + (product.price * item.qty);
     }, 0);
     setTotalPrice(sum); // update total price
     localStorage.setItem('cart', JSON.stringify(cart));
     }
-  }, [cart])
+  }, [cart, products])
 
   const handleLogout = () => {
     localStorage.removeItem('email');
@@ -105,8 +115,8 @@ const ProductsPage = () => {
         </div>
         <div className="flex justify-center py-5">
         <div className="w-3/4 flex flex-wrap gap-5 justify-center">
-          {DataProducts.map((product) => (
-          <CardProduct key={product.id}> // memberikan key pada setiap item
+          {products.length > 0 && products.map((product) => (
+          <CardProduct key={product.id}>
             <CardProduct.Header image={product.image} alt={product.alt} />
               <CardProduct.Body title={product.title}>
                 {product.description}
@@ -135,23 +145,23 @@ const ProductsPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item) => {
-                  const product = DataProducts.find((product) => product.id === item.id);
+                {products.length > 0 && cart.map((item) => {
+                  const product = products.find((product) => product.id === item.id);
                   return (
                     <tr key={item.id}>
-                      <td>{product.id}</td>
+                      <td>{product.title.substring(0, 20)}...</td>
                       <td>
-                        Rp {product.price.toLocaleString('id-ID')}
+                        $ {product.price.toLocaleString('id-ID')}
                         </td>
                       <td>{item.qty}</td>
                       <td> 
-                        Rp {(product.price * item.qty).toLocaleString('id-ID')}</td>
+                        $ {(product.price * item.qty).toLocaleString('id-ID')}</td>
                     </tr>
                   )
                 })}
                 <tr ref={totalPriceRef} className='font-bold'>
                   <td colSpan={3}>Total Price</td>
-                  <td> Rp {totalPrice.toLocaleString('id-ID')}</td>
+                  <td> $ {totalPrice.toLocaleString('id-ID')}</td>
                 </tr>
               </tbody>
             </table>
