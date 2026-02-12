@@ -51,6 +51,11 @@
 - Commit Phase => Bisa dapat melakukan update, scheduling, dom Dll.
 - projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
-*UseEffect**
+**UseEffect**
 - Dapat memanipulasi component, untuk melakukan sync component
 - Menggunakan metode yang ada di lifecycle
+
+**UseRef**
+- Sebuah hook yang memiliki beberapa fungsi
+- Referensi Values sama halnya seperti useState bisa menyimpan data di dalamnya namun bedanya jika menggunakan Ref tidak melakukan reRender Component
+- Studi kasus : formLogin tidak perlu cursor ke form untuk mengarahkan, otomatis sudah di dalam form
