@@ -59,3 +59,7 @@
 - Sebuah hook yang memiliki beberapa fungsi
 - Referensi Values sama halnya seperti useState bisa menyimpan data di dalamnya namun bedanya jika menggunakan Ref tidak melakukan reRender Component
 - Studi kasus : formLogin tidak perlu cursor ke form untuk mengarahkan, otomatis sudah di dalam form
+
+**Get API**
+- Get API dari https://fakestoreapi.com/
+- install Axios untuk fetch api 
