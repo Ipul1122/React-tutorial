@@ -1,7 +1,8 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import CardProduct from '../components/Fragments/CardProduct';
 import Button from '../components/elements/Button';
 import Counter from '../components/Fragments/Counter';
+import { createRoutesFromElements } from 'react-router-dom';
 
 // definisikan komponen menjadi rendering lists
 const DataProducts = [
@@ -76,6 +77,26 @@ const ProductsPage = () => {
     }
   }
 
+  // useRef 
+  const cartRef = useRef(JSON.parse(localStorage.getItem('cart')) || []
+)
+  // HandleAddToCart with useRef
+  const handleAddToCartRef  = (id) => {
+    cartRef.current = [...cartRef.current, {id, qty: 1}];
+    localStorage.setItem('cart', JSON.stringify(cartRef.current));
+  }
+
+  // Manipulasi DOM langsung dengan useRef
+  const totalPriceRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = 'table-row';
+    } else {
+      totalPriceRef.current.style.display = 'none';
+    }
+  }, [cart])
+
     return (
       <Fragment>
         <div className="flex justify-end h-10 bg-blue-500 text-white items-center px-5">
@@ -128,7 +149,7 @@ const ProductsPage = () => {
                     </tr>
                   )
                 })}
-                <tr className='font-bold'>
+                <tr ref={totalPriceRef} className='font-bold'>
                   <td colSpan={3}>Total Price</td>
                   <td> Rp {totalPrice.toLocaleString('id-ID')}</td>
                 </tr>
